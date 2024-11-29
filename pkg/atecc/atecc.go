@@ -456,6 +456,6 @@ func (priv *privateKey) Sign(rand io.Reader, digest []byte, opts crypto.SignerOp
 }
 
 // SelfTest performs a self test of the device.
-func (d *Dev) SelfTest(ctx context.Context) error {
+func (d *Dev) SelfTest(ctx context.Context) (byte, error) {
 	return d.selfTest(ctx)
 }

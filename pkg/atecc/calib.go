@@ -456,10 +456,13 @@ func (d *Dev) updateExtra(ctx context.Context, mode updateMode, newValue byte) e
 	return d.execute(ctx, command)
 }
 
-func (d *Dev) selfTest(ctx context.Context) error {
+func (d *Dev) selfTest(ctx context.Context) (byte, error) {
 	command, err := newSelfTestCommand()
 	if err != nil {
-		return err
+		return 0, err
 	}
-	return d.execute(ctx, command)
+
+	var recv [1]byte
+	_, err = d.executeResponse(ctx, command, recv[:])
+	return recv[0], err
 }
