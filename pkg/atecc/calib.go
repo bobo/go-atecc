@@ -455,3 +455,11 @@ func (d *Dev) updateExtra(ctx context.Context, mode updateMode, newValue byte) e
 
 	return d.execute(ctx, command)
 }
+
+func (d *Dev) selfTest(ctx context.Context) error {
+	command, err := newSelfTestCommand()
+	if err != nil {
+		return err
+	}
+	return d.execute(ctx, command)
+}

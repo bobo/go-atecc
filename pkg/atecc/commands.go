@@ -3,7 +3,7 @@ package atecc
 import "errors"
 
 // General device command opcodes
-//nolint unused commands
+// nolint unused commands
 const (
 	atcaCheckMac    = 0x28 // CheckMac command op-code
 	atcaDeriveKey   = 0x1c // DeriveKey command op-code
@@ -68,7 +68,7 @@ func newReadCommand(zone Zone, param2 uint16, block bool) (*packet, error) {
 	return newPacket(atcaRead, param1, param2, nil)
 }
 
-//nolint unused
+// nolint unused
 const (
 	genKeyModePrivate      = 0x04 // generate private key
 	genKeyModePublic       = 0x00 // calculate public key
@@ -83,7 +83,7 @@ func newGenKeyCommand(mode uint8, keyId uint8, otherData []byte) (*packet, error
 
 type randomMode uint8
 
-//nolint unused
+// nolint unused
 const (
 	randomModeUpdateSeed   randomMode = 0x0
 	randomModeNoUpdateSeed randomMode = 0x01
@@ -95,7 +95,7 @@ func newRandomCommand(mode randomMode) (*packet, error) {
 
 type nonceTarget uint8
 
-//nolint unused
+// nolint unused
 const (
 	nonceTargetTempKey   nonceTarget = 0x0  // TempKey
 	nonceTargetMsgDigBuf nonceTarget = 0x40 // Message Digest Buffer (ATECC608)
@@ -112,7 +112,7 @@ const (
 )
 
 // Nonce mode flags.
-//nolint unused
+// nolint unused
 const (
 	nonceModeFlagInputLenMask uint8 = 0x20 // Nonce mode: input size mask
 	nonceModeFlagInputLen32   uint8 = 0x00 // Nonce mode: input size is 32 bytes
@@ -141,7 +141,7 @@ func newNonceCommand(mode nonceMode, target nonceTarget, param2 uint16, keyIn []
 
 type signMode uint8
 
-//nolint unused
+// nolint unused
 const (
 	signModeInternal   signMode = 0x00 // Sign mode	 0: internal
 	signModeInvalidate signMode = 0x01 // Sign mode bit 1: Signature will be used for Verify(Invalidate)
@@ -163,7 +163,7 @@ func newSignCommand(mode signMode, source signSource, keyId uint16) (*packet, er
 type verifyMode uint8
 
 // Verify modes.
-//nolint unused
+// nolint unused
 const (
 	verifyModeStored           verifyMode = 0x00 // stored
 	verifyModeValidateExternal verifyMode = 0x01 // validate external
@@ -173,7 +173,7 @@ const (
 )
 
 // Verify key types.
-//nolint unused
+// nolint unused
 const (
 	verifyKeyB283 = 0x0000 // B283
 	verifyKeyK283 = 0x0001 // K283
@@ -240,4 +240,8 @@ const (
 
 func newUpdateExtraCommand(mode updateMode, newValue byte) (*packet, error) {
 	return newPacket(atcaUpdateExtra, uint8(mode), uint16(newValue), nil)
+}
+
+func newSelfTestCommand() (*packet, error) {
+	return newPacket(atcaSelfTest, 0x0, 0x0, nil)
 }
