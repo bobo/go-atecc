@@ -1,4 +1,4 @@
-module github.com/northvolt/go-atecc
+module github.com/bobo/go-atecc
 
 go 1.20
 
