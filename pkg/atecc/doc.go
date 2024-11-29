@@ -5,7 +5,7 @@
 // This code is based on MicrochipTech's Cryptoauthlib code, thus its original
 // copyright is retained for this code.
 //
-// Copyright (c) 2022 Northvolt AB and the atecc authors.
+// Copyright (c) 2022 bobo AB and the atecc authors.
 // Copyright (c) 2015-2022 Microchip Technology Inc. and its subsidiaries.
 //
 // # Datasheets

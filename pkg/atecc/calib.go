@@ -4,7 +4,7 @@ import (
 	"context"
 	"errors"
 
-	"github.com/northvolt/go-atecc/pkg/ateccconf"
+	"github.com/bobo/go-atecc/pkg/ateccconf"
 )
 
 // Definitions for Zone and Address Parameters
