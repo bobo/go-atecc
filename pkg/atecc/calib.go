@@ -457,7 +457,7 @@ func (d *Dev) updateExtra(ctx context.Context, mode updateMode, newValue byte) e
 }
 
 func (d *Dev) selfTest(ctx context.Context) (byte, error) {
-	command, err := newSelfTestCommand()
+	command, err := newSelfTestCommand(selfTestModeSHA | selfTestModeAES | selfTestModeECDH | selfTestModeECDSA | selfTestModeRNG)
 	if err != nil {
 		return 0, err
 	}

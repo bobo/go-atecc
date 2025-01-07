@@ -242,6 +242,26 @@ func newUpdateExtraCommand(mode updateMode, newValue byte) (*packet, error) {
 	return newPacket(atcaUpdateExtra, uint8(mode), uint16(newValue), nil)
 }
 
-func newSelfTestCommand() (*packet, error) {
-	return newPacket(atcaSelfTest, 0x0, 0x0, nil)
+/*
+*
+Opcode
+(1 Byte)
+Mode (1 Byte)1 Param2
+(2 Bytes) b[7:6] b[5] b[4] b[3] b[2] b[1] b[0]
+2’b00 SHA AES ECDH ECDSA (Sign, Verify) 0 RNG, DRBG 0x00 00
+*
+*/
+const (
+	selfTestModeDefault selfTestMode = 0x00
+	selfTestModeSHA     selfTestMode = 0x01
+	selfTestModeAES     selfTestMode = 0x02
+	selfTestModeECDH    selfTestMode = 0x03
+	selfTestModeECDSA   selfTestMode = 0x04
+	selfTestModeRNG     selfTestMode = 0x05
+)
+
+type selfTestMode uint8
+
+func newSelfTestCommand(mode selfTestMode) (*packet, error) {
+	return newPacket(atcaSelfTest, uint8(mode), 0x0, nil)
 }
